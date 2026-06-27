@@ -1,0 +1,8 @@
+# Render Blueprint (IaC) — static site served from this repo's root.
+services:
+  - type: web
+    name: sf-demo-app
+    runtime: static
+    buildCommand: ""
+    staticPublishPath: .
+    autoDeploy: true
