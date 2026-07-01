@@ -1,32 +1,27 @@
-# SPEC: Hero Section
+# SPEC: 个人待办事项应用（MyTODO）
 
-## Summary
-Replace the "under construction" placeholder in `index.html` with a hero block:
-a large headline, a one-line subtitle, and a single call-to-action (CTA) button.
+> 人类可读摘要。完整规格见 openspec 变更：`openspec/changes/todo-f8c546dc/`
+> （`proposal.md` + `specs/<capability>/spec.md`）。
 
-## Scope
-**In scope**
-- Remove the construction placeholder markup (`.tag` and `.meta` lines) from `main`.
-- Add a hero block containing:
-  - **Headline** — a large `<h1>` title.
-  - **Subtitle** — a single-line supporting `<p>`.
-  - **CTA** — one action button/link styled as a prominent button.
-- Styling for the hero in `style.css`, reusing the existing dark gradient theme.
+## 概述
+为「管理个人日常待办事项」的 TODO 应用建立首个规格。用户可创建、编辑、删除待办，
+标记完成状态并按状态筛选，数据跨会话持久化。前端 React + Vite + Tailwind，
+后端 Node HTTP API + PostgreSQL，遵循已批准的项目奠基与设计系统。
 
-**Out of scope**
-- Routing or navigation, additional page sections, forms.
-- CTA target behavior beyond a placeholder link/anchor.
-- Backend, analytics, i18n changes (page stays `lang="zh"`).
+## 能力（Capabilities）
+- **todo-management** — 待办的创建、查看、编辑标题、删除，含空标题/超长校验。
+- **todo-completion** — 完成状态切换、按「全部/未完成/已完成」筛选、未完成计数。
+- **todo-persistence** — 跨会话持久化、按用户鉴权（fail-closed）、向后兼容可重放迁移。
 
-## Behavior
-- The hero renders centered on the page (keeps the existing centered `main` layout).
-- Headline is the dominant visual element; subtitle sits directly beneath it.
-- The CTA appears below the subtitle and is clearly clickable (hover/focus state).
-- Layout remains responsive and readable on mobile (≤480px) and desktop.
+## 范围
+**在范围内**
+- 单用户个人待办的完整增删改查与状态管理。
+- 数据持久化到 PostgreSQL，按认证用户隔离。
 
-## Acceptance Criteria
-- [ ] The construction placeholder text is no longer present.
-- [ ] Page shows a large headline, a one-line subtitle, and one CTA button.
-- [ ] CTA is keyboard-focusable and has a visible hover/focus state.
-- [ ] Layout is centered and does not overflow horizontally at 320–1280px widths.
-- [ ] No console errors; page is a static file servable as-is (per `render.yaml`).
+**不在范围内**
+- 多用户协作/共享、提醒推送、标签/分组、路由与多页面。
+- 改动现有 `index.html` 静态骨架（由后续实现阶段处理）。
+
+## 验收
+- `openspec validate todo-f8c546dc --strict` 通过。
+- 三个 capability 的 spec 均含 Requirement（SHALL）与至少一个 Scenario（WHEN/THEN）。
